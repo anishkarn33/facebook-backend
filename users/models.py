@@ -1,16 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-# Create your models here.
+from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=20, blank=True, null=True)
+    phone = models.CharField(_('phone'), max_length=20, blank=True, null=True)
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    avatar = models.URLField(blank=True, null=True)
+    avatar = models.URLField(_('avatar'), blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 
