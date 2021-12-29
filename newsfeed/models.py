@@ -5,7 +5,7 @@ from django.db import models
 class Newsfeed(models.Model):
     body = models.TextField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    date_updated = models.DateTimeField(auto_now=True, auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
 
 class NewsfeedFile(models.Model):
