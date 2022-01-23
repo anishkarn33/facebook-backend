@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-c!%*_4ws4c-u7$qv!dhmbau*@znnnc4o6vw@w43j^%by2wsgwo
 DEBUG = config("DEBUG", cast=bool, default=True)
 
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = []
 
 LOG_LEVEL = 'ERROR'
@@ -46,7 +48,7 @@ INSTALLED_APPS = [
     # third-party apps
     'rest_framework',
     'rest_framework.authtoken',
-    # 'corsheaders',
+    'corsheaders',
 
     # project apps
     'newsfeed',
