@@ -1,6 +1,6 @@
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import User
+from .models import User, UserProfile
 from rest_framework import viewsets, permissions
 from .serializers import UserSerializer, UserProfileSerializer
 
@@ -28,7 +28,18 @@ class UserViewset(viewsets.ModelViewSet):
         else:
             return Response(data='wrong password')
 
+    
+    @action(methods=['get'], detail=False, permission_classes=[permissions.IsAuthenticated])
+    def me(self, request, *args, **kwargs):
+        user = request.user
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
+
+
+
 class UserProfileViewset(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.AllowAny]
+
+

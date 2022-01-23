@@ -17,13 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from users import views
+from newsfeed.views import NewsfeedViewset
+from rest_framework.authtoken.views import obtain_auth_token
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewset)
 router.register(r'profiles', views.UserProfileViewset)
+router.register(r'newsfeeds', NewsfeedViewset )
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
+    path('token/', obtain_auth_token)
+
 ]
